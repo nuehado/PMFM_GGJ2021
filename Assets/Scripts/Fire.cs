@@ -40,4 +40,9 @@ public class Fire : Interactable_Source
     {
         Debug.Log($"{gameObject.name} ran out of fuel!");
     }
+
+    public float GetFireLife()
+    {
+        return fuel;
+    }
 }

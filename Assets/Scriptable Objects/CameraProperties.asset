@@ -18,5 +18,6 @@ MonoBehaviour:
   backward: 115
   rotateLeft: 0
   rotateRight: 0
-  acceleration: 150
-  maxSpeed: 16
+  drag: 4
+  acceleration: 200
+  maxSpeed: 40

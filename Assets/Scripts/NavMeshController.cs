@@ -16,6 +16,7 @@ public class NavMeshController : MonoBehaviour
 
     private void Update()
     {
+        //TODO Add right click task queue system
         if (Input.GetMouseButton(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);

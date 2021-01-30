@@ -22,24 +22,23 @@ public class CameraControl : MonoBehaviour
             return;
 
         Vector3 addedVelocity = Vector3.zero;
-
         if (Input.GetKey(properties.left))
-            addedVelocity += Vector3.left * Time.deltaTime * properties.acceleration;
+            addedVelocity += Vector3.left;
         if (Input.GetKey(properties.right))
-            addedVelocity += Vector3.right * Time.deltaTime * properties.acceleration;
+            addedVelocity += Vector3.right;
         if (Input.GetKey(properties.forward))
-            addedVelocity += Vector3.forward * Time.deltaTime * properties.acceleration;
+            addedVelocity += Vector3.forward;
         if (Input.GetKey(properties.backward))
-            addedVelocity += Vector3.back * Time.deltaTime * properties.acceleration;
+            addedVelocity += Vector3.back;
+        addedVelocity = addedVelocity.normalized * Time.deltaTime * properties.acceleration;
 
         addedVelocity = RotateAboutYAxis(addedVelocity, transform.eulerAngles.y * Mathf.Deg2Rad);
 
         rb.velocity += addedVelocity;
-        rb.velocity = new Vector3(
-            Mathf.Clamp(rb.velocity.x, -properties.maxSpeed, properties.maxSpeed),
-            Mathf.Clamp(rb.velocity.y, -properties.maxSpeed, properties.maxSpeed),
-            Mathf.Clamp(rb.velocity.z, -properties.maxSpeed, properties.maxSpeed)
-            );
+        if (rb.velocity.magnitude >properties.maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * properties.maxSpeed;
+        }
     }
 
     Vector3 RotateAboutYAxis(Vector3 v, float angle)

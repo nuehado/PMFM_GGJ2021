@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DefaultFire
   m_EditorClassIdentifier: 
   startingFuel: 30
-  fuelUsageRate: 1
+  fuelUsageRate: 0.5
