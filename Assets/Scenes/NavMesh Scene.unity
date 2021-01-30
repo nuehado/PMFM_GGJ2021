@@ -2188,6 +2188,7 @@ GameObject:
   - component: {fileID: 705813924}
   - component: {fileID: 705813923}
   - component: {fileID: 705813922}
+  - component: {fileID: 705813925}
   m_Layer: 0
   m_Name: Fire (1)
   m_TagString: Untagged
@@ -2270,6 +2271,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705813920}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &705813925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705813920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e178a5991d8214e4a97d36b2be1903cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  properties: {fileID: 11400000, guid: dea86eb5e6b0ccb418e615dce15c1c74, type: 2}
 --- !u!1 &720805848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2298,7 @@ GameObject:
   - component: {fileID: 720805850}
   - component: {fileID: 720805853}
   - component: {fileID: 720805854}
+  - component: {fileID: 720805855}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -2376,7 +2391,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2398,6 +2413,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5594cdd032e2fa4dbe88d3df86b034e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &720805855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720805848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70fb92984e7a1d4ab9a1a18779e5760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &744836844
@@ -4924,6 +4951,7 @@ GameObject:
   - component: {fileID: 1473688103}
   - component: {fileID: 1473688106}
   - component: {fileID: 1473688105}
+  - component: {fileID: 1473688107}
   - component: {fileID: 1473688104}
   m_Layer: 0
   m_Name: Fire (2)
@@ -5007,6 +5035,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473688102}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1473688107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473688102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e178a5991d8214e4a97d36b2be1903cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  properties: {fileID: 11400000, guid: dea86eb5e6b0ccb418e615dce15c1c74, type: 2}
 --- !u!1 &1503830751
 GameObject:
   m_ObjectHideFlags: 0
