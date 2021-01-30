@@ -30,6 +30,9 @@ public class CharacterInventory : MonoBehaviour
             return;
         }
 
+        if (fire.fuel <= 0)
+            return;
+
         Kindling currKindling = inventory[index];
         fire.AddFuel(currKindling.properties.fuelValue);
         inventory.RemoveAt(index);

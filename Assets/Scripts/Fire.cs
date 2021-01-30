@@ -7,7 +7,7 @@ public class Fire : Interactable_Source
     //all values that would normally be edited in editor should be in Fire_Properties
     public Fire_Properties properties;
 
-    [SerializeField] private float fuel;
+    [HideInInspector] public float fuel;
 
     private void Start()
     {
