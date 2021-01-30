@@ -5,11 +5,13 @@ using UnityEngine;
 public class CharacterInventory : MonoBehaviour
 {
     public CharacterInventory_Properties properties;
-    [SerializeField] private List<Interactable_Source> inventory;
+    public List<Interactable_Source> inventory;
+    private InventoryUI ui;
 
     private void Start()
     {
         inventory = new List<Interactable_Source>();
+        ui = transform.GetChild(0).GetComponent<InventoryUI>();
     }
 
     public void AddToInventory(Interactable_Source newObject)
@@ -22,6 +24,7 @@ public class CharacterInventory : MonoBehaviour
         inventory.Add(newObject);
         newObject.owner = this;
         newObject.gameObject.SetActive(false);
+        ui.RefreshUI();
     }
 
     public void AddKindlingToFire(int index, Fire fire)
@@ -59,6 +62,7 @@ public class CharacterInventory : MonoBehaviour
         {
             Destroy(obj.gameObject);
         }
+        ui.RefreshUI();
     }
 
     public void AddAllKindlingToFire(Fire fire)
