@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class KindlingSource : MonoBehaviour
+public abstract class KindlingSource : Interactable_Source
 {
-    public abstract void CollectKindling();
+    public abstract void HarvestKindling();
 }

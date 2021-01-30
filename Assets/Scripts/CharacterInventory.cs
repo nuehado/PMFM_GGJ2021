@@ -14,7 +14,7 @@ public class CharacterInventory : MonoBehaviour
 
     public void AddToInventory(Kindling newKindling)
     {
-        if (inventory.Count >= properties.size) //inventory full
+        if (inventory.Count >= properties.size || inventory.Contains(newKindling)) //inventory full or duplicate
             return;
 
         inventory.Add(newKindling);

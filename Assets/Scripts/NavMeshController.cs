@@ -24,7 +24,6 @@ public class NavMeshController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 Debug.DrawLine(ray.origin, hit.point);
-                
 
                 if (hit.collider.TryGetComponent(out NavMeshAgent character))
                 {
@@ -38,20 +37,20 @@ public class NavMeshController : MonoBehaviour
                 else if (agent != null)
                 {
                     agent.SetDestination(hit.point); //a character currently selected, move them to hit
-
-                    if (hit.collider.TryGetComponent(out Kindling kindling))
+                    
+                    if (hit.collider.TryGetComponent(out Interactable_Source interactable))
                     {
-                        Debug.Log($"{gameObject} is getting some kindling");
-                        //TODO start checking if we've reached the kindling
+                        Debug.Log("calling coroutine from navcontroller");
+                        StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(interactable));
                     }
-
-                    else if (hit.collider.TryGetComponent(out Fire fire))
+                    else
                     {
-                        Debug.Log($"{gameObject} is going to a fire");
-                        //TODO start checking if we've reached the fire
+                        agent.GetComponent<InteractionManager>().ClearTargetInteractables();
                     }
                 }
             }
         }
     }
+
+    
 }

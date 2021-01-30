@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kindling : Interactable_Source
+public abstract class Interactable_Source : MonoBehaviour
 {
-    public Kindling_Properties properties;
+
 }

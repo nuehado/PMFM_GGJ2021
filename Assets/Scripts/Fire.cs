@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Fire : Interactable_Source
 {
     //all values that would normally be edited in editor should be in Fire_Properties
     public Fire_Properties properties;
@@ -40,6 +40,4 @@ public class Fire : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} ran out of fuel!");
     }
-
-
 }
