@@ -11,7 +11,7 @@ public class CharacterInventory : MonoBehaviour
     private void Start()
     {
         inventory = new List<Interactable_Source>();
-        ui = transform.GetChild(0).GetComponent<InventoryUI>();
+        ui = transform.GetComponentInChildren<InventoryUI>();
     }
 
     public void AddToInventory(Interactable_Source newObject)
