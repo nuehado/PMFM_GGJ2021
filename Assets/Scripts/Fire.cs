@@ -7,7 +7,7 @@ public class Fire : MonoBehaviour
     //all values that would normally be edited in editor should be in Fire_Properties
     public Fire_Properties properties;
 
-    private float fuel;
+    [SerializeField] private float fuel;
 
     private void Start()
     {

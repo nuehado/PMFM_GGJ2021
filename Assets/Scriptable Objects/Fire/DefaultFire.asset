@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f136323960448824c8e3533410678c90, type: 3}
   m_Name: DefaultFire
   m_EditorClassIdentifier: 
-  startingFuel: 10
-  fuelUsageRate: 5
+  startingFuel: 30
+  fuelUsageRate: 1
