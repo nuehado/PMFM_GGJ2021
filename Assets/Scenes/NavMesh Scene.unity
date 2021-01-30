@@ -1655,6 +1655,7 @@ GameObject:
   - component: {fileID: 607364220}
   - component: {fileID: 607364219}
   - component: {fileID: 607364218}
+  - component: {fileID: 607364221}
   m_Layer: 0
   m_Name: Kindling (6)
   m_TagString: Untagged
@@ -1736,6 +1737,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607364216}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &607364221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607364216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6e52c52e6d970448e510b3a415efbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  properties: {fileID: 11400000, guid: 81e2125d02b0b8f4796567dff98e9bf4, type: 2}
 --- !u!1 &622524957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties: {fileID: 11400000, guid: dea86eb5e6b0ccb418e615dce15c1c74, type: 2}
+  fuel: 0
 --- !u!1 &720805848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,7 +2313,6 @@ GameObject:
   - component: {fileID: 720805850}
   - component: {fileID: 720805853}
   - component: {fileID: 720805854}
-  - component: {fileID: 720805855}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -2413,18 +2427,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5594cdd032e2fa4dbe88d3df86b034e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &720805855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720805848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70fb92984e7a1d4ab9a1a18779e5760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &744836844
@@ -5048,6 +5050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties: {fileID: 11400000, guid: dea86eb5e6b0ccb418e615dce15c1c74, type: 2}
+  fuel: 0
 --- !u!1 &1503830751
 GameObject:
   m_ObjectHideFlags: 0
