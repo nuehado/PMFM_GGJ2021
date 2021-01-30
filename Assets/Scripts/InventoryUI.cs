@@ -17,6 +17,7 @@ public class InventoryUI : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         DetectUI();
+        ShowUI(false);
     }
 
     private void DetectUI()
@@ -46,7 +47,7 @@ public class InventoryUI : MonoBehaviour
             if (inventory.inventory.Count <= i)
             {
                 iconButtons[i].interactable = false;
-                iconImages[i].sprite = null;
+                iconImages[i].sprite = properties.empty;
             }
             else
             {

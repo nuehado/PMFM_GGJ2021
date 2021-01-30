@@ -30,10 +30,10 @@ public class NavMeshController : MonoBehaviour
                 {
                     if ((agent != null))
                     {
-                        agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+                        SelectAgent(agent, false);
                     }
                     agent = character; // if we click a character we select them
-                    agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                    SelectAgent(agent, true);
                 }
                 else if (agent != null)
                 {
@@ -53,5 +53,18 @@ public class NavMeshController : MonoBehaviour
         }
     }
 
+    private void SelectAgent(NavMeshAgent agent, bool toggle)
+    {
+        if (toggle)
+        {
+            agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+        }
+        else
+        {
+            agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+        }
+
+        agent.GetComponentInChildren<InventoryUI>().ShowUI(toggle);
+    }
     
 }

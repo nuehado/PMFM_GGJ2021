@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963a27c9d0b68e747b9d0ee038a8276f, type: 3}
   m_Name: Inventory UI Properties
   m_EditorClassIdentifier: 
-  twig: {fileID: 0}
-  log: {fileID: 0}
-  oilLamp: {fileID: 0}
+  empty: {fileID: 21300000, guid: 1b6b727c06d55e9479d430c3b6ee92b3, type: 3}
+  twig: {fileID: 21300000, guid: 312f8073131c7db46af9bfebb776a055, type: 3}
+  log: {fileID: 21300000, guid: ac0d9072556d71a44853f3901e59556d, type: 3}
+  oilLamp: {fileID: 21300000, guid: e07456f03cddf4541a4b08b15e67984f, type: 3}
