@@ -7,7 +7,6 @@ public class HarvestableTree : KindlingSource
 {
     [SerializeField] private List<GameObject> harvestables;
     [SerializeField] private GameObject stump;
-    public float interactTimer = 0;
 
     public override bool IsInteractedWith { get; set; } = false;
 

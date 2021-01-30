@@ -6,7 +6,6 @@ using UnityEngine;
 public class HarvestableStump : KindlingSource
 {
     [SerializeField] private List<GameObject> harvestables;
-    public float interactTimer = 0;
 
     public override bool IsInteractedWith { get; set; }
 
