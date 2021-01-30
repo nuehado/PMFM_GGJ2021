@@ -8,4 +8,6 @@ public class IsoLook_Properties : ScriptableObject
     public float xRot;
     public float yRot;
     public float zRot;
+
+    public bool updateEveryFrame;
 }

@@ -57,11 +57,11 @@ public class NavMeshController : MonoBehaviour
     {
         if (toggle)
         {
-            agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+            agent.GetComponentInChildren<SpriteRenderer>().color = Color.green;
         }
         else
         {
-            agent.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+            agent.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
 
         agent.GetComponentInChildren<InventoryUI>().ShowUI(toggle);
