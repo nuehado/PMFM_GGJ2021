@@ -5,20 +5,23 @@ using UnityEngine;
 public class CharacterInventory : MonoBehaviour
 {
     public CharacterInventory_Properties properties;
-    [SerializeField] private List<Kindling> inventory;
+    [SerializeField] private List<Interactable_Source> inventory;
 
     private void Start()
     {
-        inventory = new List<Kindling>();
+        inventory = new List<Interactable_Source>();
     }
 
-    public void AddToInventory(Kindling newKindling)
+    public void AddToInventory(Interactable_Source newObject)
     {
-        if (inventory.Count >= properties.size || inventory.Contains(newKindling)) //inventory full or duplicate
+        if (inventory.Count >= properties.size || 
+            inventory.Contains(newObject) ||
+            !newObject.IsEquippable()) //inventory full or duplicate or not equippable
             return;
 
-        inventory.Add(newKindling);
-        newKindling.gameObject.SetActive(false);
+        inventory.Add(newObject);
+        newObject.owner = this;
+        newObject.gameObject.SetActive(false);
     }
 
     public void AddKindlingToFire(int index, Fire fire)
@@ -30,20 +33,44 @@ public class CharacterInventory : MonoBehaviour
             return;
         }
 
-        if (fire.fuel <= 0)
+        if (!fire.IsRefuelable())
             return;
 
-        Kindling currKindling = inventory[index];
+        if (!(inventory[index] is Kindling)) //make sure that object is kindling
+            return;
+
+        Kindling currKindling = inventory[index] as Kindling;
         fire.AddFuel(currKindling.properties.fuelValue);
-        inventory.RemoveAt(index);
-        Destroy(currKindling.gameObject);
+        RemoveFromInventory(inventory[index]);
+    }
+
+    public void RemoveFromInventory(Interactable_Source obj, bool dropped = false)
+    {
+        inventory.Remove(obj);
+        if (dropped) //object discarded, leave it on the ground
+        {
+            Vector3 spawnLocation = new Vector3(transform.position.x + Random.Range(-1.5f, 1.5f), 
+                transform.position.y - 1, transform.position.z + Random.Range(-1.5f, 1.5f));
+            obj.transform.position = spawnLocation;
+            obj.owner = null;
+            obj.gameObject.SetActive(true);
+        }
+        else //object used, destroy it
+        {
+            Destroy(obj.gameObject);
+        }
     }
 
     public void AddAllKindlingToFire(Fire fire)
     {
-        while (inventory.Count > 0)
+        int nonKindlingItems = 0;
+
+        while (inventory.Count > nonKindlingItems)
         {
-            AddKindlingToFire(0, fire);
+            if (inventory[nonKindlingItems] is Kindling)
+                AddKindlingToFire(nonKindlingItems, fire);
+            else
+                nonKindlingItems++;
         }
     }
 }

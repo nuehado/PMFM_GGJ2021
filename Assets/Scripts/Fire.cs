@@ -7,7 +7,9 @@ public class Fire : Interactable_Source
     //all values that would normally be edited in editor should be in Fire_Properties
     public Fire_Properties properties;
 
-    [HideInInspector] public float fuel;
+    [SerializeField] private float fuel;
+
+    public enum FireType { Default, Oil, Friend };
 
     private void Start()
     {
@@ -28,6 +30,17 @@ public class Fire : Interactable_Source
         yield return null;
     }
 
+    public bool IsRefuelable()
+    {
+        return fuel > 0 &&
+            properties.fireType != FireType.Friend;
+    }
+
+    public override bool IsEquippable()
+    {
+        return properties.fireType == FireType.Oil;
+    }
+
     public void AddFuel(float amount)
     {
         if (fuel <= 0)
@@ -44,5 +57,14 @@ public class Fire : Interactable_Source
     public float GetFireLife()
     {
         return fuel;
+    }
+
+    public void StartNewFire(Vector3 location)
+    {
+        if (properties.fireType != FireType.Oil)
+            return;
+
+        Instantiate(properties.newFirePrefab, location, Quaternion.identity);
+        owner.RemoveFromInventory(this as Interactable_Source);
     }
 }
