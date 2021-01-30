@@ -6,6 +6,7 @@ using UnityEngine;
 public class InteractionManager : MonoBehaviour
 {
     private CharacterInventory inventory;
+    private Interactable_Source currentInteractable;
 
     private void Start()
     {
@@ -28,8 +29,9 @@ public class InteractionManager : MonoBehaviour
                 inventory.AddAllKindlingToFire(fire);
             }
 
-            else if (interactable is HarvestableTree tree)
+            else if (interactable is KindlingSource tree)
             {
+                currentInteractable = tree;
                 tree.HarvestKindling();
             }
             StopAllCoroutines();
@@ -43,6 +45,10 @@ public class InteractionManager : MonoBehaviour
 
     internal void ClearTargetInteractables()
     {
+        if (currentInteractable is KindlingSource source)
+        {
+            source.IsInteractedWith = false;
+        }
         Debug.Log("Headed towards random spot");
         StopAllCoroutines();
     }

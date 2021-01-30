@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4176939824338395761}
   - component: {fileID: 2423408543922607518}
   m_Layer: 0
-  m_Name: HarvestableStump
+  m_Name: HarvestableStump1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,5 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9715e52388778447b4ca14afc82387d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  properties: {fileID: 11400000, guid: e16f10990668795448d6c4ba63c56173, type: 2}
   harvestables:
   - {fileID: 7090562353737208443, guid: c85de27d87bc38e44a39274f4f536ab0, type: 3}

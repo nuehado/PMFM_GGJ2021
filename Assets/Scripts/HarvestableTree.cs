@@ -7,16 +7,41 @@ public class HarvestableTree : KindlingSource
 {
     [SerializeField] private List<GameObject> harvestables;
     [SerializeField] private GameObject stump;
+    public float interactTimer = 0;
+
+    public override bool IsInteractedWith { get; set; } = false;
 
     public override void HarvestKindling()
     {
-        foreach (GameObject kindling in harvestables)
-        {
-            Vector3 spawnLocation = new Vector3(transform.position.x + Random.Range(1.5f, 2.5f), transform.position.y -1 , transform.position.z + Random.Range(1.5f, 2.5f));
-            Instantiate(kindling, spawnLocation, Quaternion.identity);
+        interactTimer = properties.interactionTime;
+        IsInteractedWith = true;
+        StartCoroutine(ChopItSmaller());
+    }
 
+    IEnumerator ChopItSmaller()
+    {
+        if (IsInteractedWith == false)
+        {
+            yield break;
         }
-        Instantiate(stump, transform.position, Quaternion.identity);
-        gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1);
+        interactTimer--;
+
+        if (interactTimer <= 0f)
+        {
+            foreach (GameObject kindling in harvestables)
+            {
+                Vector3 spawnLocation = new Vector3(transform.position.x + Random.Range(0.5f, 1.5f), 0.5f, transform.position.z + Random.Range(0.5f, 1.5f));
+                Instantiate(kindling, spawnLocation, Quaternion.identity);
+
+            }
+            Instantiate(stump, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            StartCoroutine(ChopItSmaller());
+        }
     }
 }
