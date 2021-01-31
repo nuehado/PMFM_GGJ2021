@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 782a7cf5f3913b941bc10817aca5a010, type: 3}
-  m_Name: DefaultInventory
+  m_Script: {fileID: 11500000, guid: f136323960448824c8e3533410678c90, type: 3}
+  m_Name: Person
   m_EditorClassIdentifier: 
-  size: 3
-  burnRecuperationSpeed: 0.5
+  startingFuel: 75
+  fuelUsageRate: 0.001
+  fireType: 2
+  newFirePrefab: {fileID: 0}

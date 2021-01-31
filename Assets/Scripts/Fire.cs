@@ -41,12 +41,17 @@ public class Fire : Interactable_Source
         return properties.fireType == FireType.Oil;
     }
 
-    public void AddFuel(float amount)
+    public void AddFuel(float amount, bool overrideExtinguished = false)
     {
-        if (fuel <= 0)
+        if (fuel <= 0 && !overrideExtinguished)
             return;
 
         fuel += amount;
+
+        if (fuel == amount) //brought back from dead
+        {
+            StartCoroutine(UseFuel());
+        }
     }
 
     private void Extinguish()

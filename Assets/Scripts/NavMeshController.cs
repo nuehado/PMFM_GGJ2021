@@ -30,8 +30,11 @@ public class NavMeshController : MonoBehaviour
                 Debug.Log("Raycast target: " + hit.collider.gameObject.name);
                 Debug.DrawLine(ray.origin, hit.point);
 
-                if (hit.collider.TryGetComponent(out NavMeshAgent character))
+                if (hit.collider.TryGetComponent(out NavMeshAgent character) && !(heldItem is Fire))
                 {
+                    if (heldItem != null)
+                        FindObjectOfType<ActionIconControl>().Disable();
+
                     if ((agent != null))
                     {
                         SelectAgent(agent, false);
@@ -48,6 +51,10 @@ public class NavMeshController : MonoBehaviour
                         Debug.Log("calling coroutine from navcontroller");
                         Vector3 targetPos = GetTargetPos(interactable, hit.point);
                         StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(interactable, heldItem, targetPos, heldItemIndex));
+                    }
+                    else if (hit.collider.TryGetComponent(out NavMeshAgent poorSoul)) //set someone on fire
+                    {
+                        StartCoroutine(agent.GetComponent<InteractionManager>().TryToSetOnFire(poorSoul, heldItem as Fire));
                     }
                     else if (heldItem == null)
                     {

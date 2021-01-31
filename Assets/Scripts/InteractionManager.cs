@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -35,6 +36,27 @@ public class InteractionManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         Debug.Log("calling coroutine from coroutine");
         StartCoroutine(PollInteractionDistance(interactable, heldItem, targetPos, i));
+    }
+
+    public IEnumerator TryToSetOnFire(NavMeshAgent poorSoul, Fire fire)
+    {
+        NavMeshAgent arsonist = GetComponent<NavMeshAgent>();
+
+        while (true)
+        {
+            if ((arsonist.transform.position - poorSoul.transform.position).magnitude < 3) //set them on fire
+            {
+                poorSoul.GetComponent<CharacterInventory>().BurstIntoFlames();
+                break;
+            }
+            else
+            {
+                arsonist.SetDestination(poorSoul.transform.position);
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+        yield return null;
     }
 
     private void InteractWithObject(Interactable_Source interactable)
@@ -82,6 +104,10 @@ public class InteractionManager : MonoBehaviour
                 {
                     GetComponent<CharacterInventory>().RemoveFromInventory(heldItem, true);
                 }
+            }
+            else if (interactable is Fire && (interactable as Fire).properties.fireType == Fire.FireType.Friend) //setting someone on fire
+            {
+                StartCoroutine(TryToSetOnFire(interactable.GetComponent<NavMeshAgent>(), heldItem as Fire));
             }
             else //drop item if not on beach
             {

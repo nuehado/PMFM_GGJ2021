@@ -54,7 +54,7 @@ public class BoatManager : MonoBehaviour
             {
                 float prog = (Time.time - startTime) / properties.boatWaitTime;
                 boat.position = Vector3.Lerp(startPos, endPos, prog);
-                if (visibleBeach.hasFire)
+                if (visibleBeach.hasAnyFire())
                 {
                     StartCoroutine(Rescue());
                     yield break;
