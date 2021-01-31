@@ -70,7 +70,7 @@ public class NavMeshController : MonoBehaviour
     {
         if (toggle)
         {
-            agent.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+            agent.GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
         }
         else
         {
