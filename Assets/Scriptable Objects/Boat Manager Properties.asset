@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boatPrefab: {fileID: 2739542676300588699, guid: fdd20f534054f2e41a6bcc82107f393d,
     type: 3}
-  timeBeforeFirstBoat: 10
+  timeBeforeFirstBoat: 145
   minTimeBetweenBoats: 30
   maxTimeBetweenBoats: 44
   boatWaitTime: 10
