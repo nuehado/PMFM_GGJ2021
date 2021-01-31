@@ -2,36 +2,106 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] Image fireFillTL;
+    [SerializeField] Image fireFillBL;
+    [SerializeField] Image fireFillTR;
+    [SerializeField] Image fireFillBR;
+
+    private Fire fireTL = null;
+    private Fire fireBL = null;
+    private Fire fireTR = null;
+    private Fire fireBR = null;
+
+    [SerializeField] Beach beachTL;
+    [SerializeField] Beach beachBL;
+    [SerializeField] Beach beachTR;
+    [SerializeField] Beach beachBR;
+
+    List<Beach> beaches = new List<Beach>();
     List<Fire> fires = new List<Fire>();
-    [SerializeField] TMP_Text fire1Life;
-    [SerializeField] TMP_Text fire2Life;
-    [SerializeField] TMP_Text gameTimer;
 
-    private float timer = 0f;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        beaches.Add(beachTL);
+        beaches.Add(beachTR);
+        beaches.Add(beachBL);
+        beaches.Add(beachBR);
+
+        //GetFires();
+        //CheckFiresFuel;
+        //UpdateFireUI();
+        //BoatsHere();
+    }
+
+    private void Update()
+    {
+        UpdateFireUI();
+    }
+
+    private void UpdateFireUI()
+    {
+        FindFires();
+        GetBeach();
+    }
+
+    private void FindFires()
+    {
+        if (FindObjectsOfType<Fire>() == null)
+        {
+            Debug.Log("You LOSe!");
+            return;
+        }
+
+        fires.Clear();
         foreach (Fire fire in FindObjectsOfType<Fire>())
         {
-            fires.Add(fire);
+            if (fires.Contains(fire) == false)
+            {
+                fires.Add(fire);
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void GetBeach()
     {
-        UpdateUI();
-    }
+        foreach(Fire fire in fires)
+        {
+            float beachDistance = Mathf.Infinity;
+            Beach closestBeach = null;
+            for (int i = 0; i < beaches.Count; i++)
+            {
+                if (Vector3.Distance(fire.transform.position, beaches[i].transform.position) < beachDistance)
+                {
+                    beachDistance = Vector3.Distance(fire.transform.position, beaches[i].transform.position);
+                    closestBeach = beaches[i];
+                }
+            }
 
-    private void UpdateUI()
-    {
-        fire1Life.text = $"fire1 Life {Mathf.Round(fires[0].GetFireLife())}";
-        fire2Life.text = $"fire2 Life {Mathf.Round(fires[1].GetFireLife())}";
-        timer += Time.deltaTime;
-        gameTimer.text = Mathf.Round(timer).ToString();
+            if (closestBeach == null)
+            {
+                return;
+            }
+            else if(closestBeach == beachTL)
+            {
+                fireFillTL.fillAmount = 0.01f * fire.GetFireLife();
+            }
+            else if (closestBeach == beachTR)
+            {
+                fireFillTR.fillAmount = 0.01f * fire.GetFireLife();
+            }
+            else if (closestBeach == beachBL)
+            {
+                fireFillBL.fillAmount = 0.01f * fire.GetFireLife();
+            }
+            else if (closestBeach == beachBR)
+            {
+                fireFillBR.fillAmount = 0.01f * fire.GetFireLife();
+            }
+        }
     }
 }
