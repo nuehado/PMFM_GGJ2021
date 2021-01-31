@@ -53,7 +53,7 @@ public class CharacterInventory : MonoBehaviour
         if (dropped) //object discarded, leave it on the ground
         {
             Vector3 spawnLocation = new Vector3(transform.position.x + Random.Range(-1.5f, 1.5f), 
-                transform.position.y - 1, transform.position.z + Random.Range(-1.5f, 1.5f));
+                transform.position.y - 0.5f, transform.position.z + Random.Range(-1.5f, 1.5f));
             obj.transform.position = spawnLocation;
             obj.owner = null;
             obj.gameObject.SetActive(true);
