@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Person
   m_EditorClassIdentifier: 
   startingFuel: 75
-  fuelUsageRate: 0.001
+  fuelUsageRate: 1
   fireType: 2
   newFirePrefab: {fileID: 0}

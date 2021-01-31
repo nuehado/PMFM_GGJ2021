@@ -53,6 +53,8 @@ public class InventoryIcon : MonoBehaviour
 
     public void StopMoving()
     {
+        if (agent == null)
+            agent = GetComponentInParent<NavMeshAgent>();
         agent.SetDestination(agent.transform.position);
     }
 }
