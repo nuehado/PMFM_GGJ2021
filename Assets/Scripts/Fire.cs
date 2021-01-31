@@ -67,6 +67,11 @@ public class Fire : Interactable_Source
         GetNearestBeach().hasFire = false;
         if (AllFiresExtinguished())
         {
+            if (OverallGameState.currGameState == OverallGameState.State.Ongoing)
+            {
+                OverallGameState.currGameState = OverallGameState.State.Lose;
+                FindObjectOfType<UIManager>().DisplayLoseScreen();
+            }
             Debug.Log("You lost! You Fucked up! You havent handled this inevitable eventuality, you dingus, you absoulte baffooon, you fucking dissapoinment");
         }
         if (properties.fireType == FireType.Default)

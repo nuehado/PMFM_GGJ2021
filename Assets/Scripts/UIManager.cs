@@ -67,13 +67,13 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private void LateUpdate()
-    {
-        if (fires.Count < 1)
-        {
-            DisplayLoseScreen();
-        }
-    }
+    //private void LateUpdate()
+    //{
+    //    if (fires.Count < 1)
+    //    {
+    //        DisplayLoseScreen();
+    //    }
+    //}
 
     public void ResumeGame()
     {
@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void DisplayLoseScreen()
+    public void DisplayLoseScreen()
     {
         Time.timeScale = 0;
         loseScreen.SetActive(true);

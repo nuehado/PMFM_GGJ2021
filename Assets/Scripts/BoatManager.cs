@@ -104,8 +104,12 @@ public class BoatManager : MonoBehaviour
         }
 
         boat.position = dockingPoint;
-        Debug.Log("YOU WON!");
-        uIManager.DisplayWin();
+        if (OverallGameState.currGameState == OverallGameState.State.Ongoing)
+        {
+            OverallGameState.currGameState = OverallGameState.State.Win;
+            Debug.Log("YOU WON!");
+            uIManager.DisplayWin();
+        }
         
         yield return null;
     }
