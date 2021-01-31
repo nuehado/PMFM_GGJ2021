@@ -68,6 +68,8 @@ public class CharacterInventory : MonoBehaviour
     public void AddAllKindlingToFire(Fire fire)
     {
         int nonKindlingItems = 0;
+        if (!fire.IsRefuelable())
+            return;
 
         while (inventory.Count > nonKindlingItems)
         {
