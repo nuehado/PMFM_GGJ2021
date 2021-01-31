@@ -10,12 +10,15 @@ public class AnimationControl : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
     SpriteRenderer sprite;
+
+    AudioSource footstep_SFX;
     private void Start()
     {
         cam = Camera.main;
         agent = GetComponentInParent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        footstep_SFX = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -37,5 +40,10 @@ public class AnimationControl : MonoBehaviour
         {
             sprite.flipX = true;
         }
+    }
+
+    private void PlayFootstepSFX()
+    {
+        footstep_SFX.Play();
     }
 }

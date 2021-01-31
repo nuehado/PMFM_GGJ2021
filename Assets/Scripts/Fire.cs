@@ -9,12 +9,19 @@ public class Fire : Interactable_Source
 
     [SerializeField] private float fuel;
 
+    private AudioSource fire_SFX;
+
     public enum FireType { Default, Oil, Friend };
 
     private void Start()
     {
+        fire_SFX = GetComponent<AudioSource>();
         fuel = properties.startingFuel;
         StartCoroutine(UseFuel());
+        if(properties.fireType == FireType.Default)
+        {
+            fire_SFX.Play();
+        }
     }
 
     private IEnumerator UseFuel()

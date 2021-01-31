@@ -7,6 +7,8 @@ public class HarvestableStump : KindlingSource
 {
     [SerializeField] private List<GameObject> harvestables;
 
+    private AudioSource harvest_SFX;
+
     public override bool IsInteractedWith { get; set; }
 
     public override void HarvestKindling()
@@ -14,6 +16,8 @@ public class HarvestableStump : KindlingSource
         interactTimer = properties.interactionTime;
         IsInteractedWith = true;
         StartCoroutine(ChopItDown());
+
+        harvest_SFX = GetComponent<AudioSource>();
     }
 
     IEnumerator ChopItDown()
@@ -24,6 +28,7 @@ public class HarvestableStump : KindlingSource
         }
         yield return new WaitForSeconds(1);
         interactTimer--;
+        harvest_SFX.Play();
 
         if (interactTimer <= 0f)
         {

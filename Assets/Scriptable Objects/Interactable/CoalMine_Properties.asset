@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426cea70e22297a4483b4b81c3d2fa74, type: 3}
-  m_Name: Stump_Interactable_Properties
+  m_Name: CoalMine_Properties
   m_EditorClassIdentifier: 
-  interactionTime: 3
+  interactionTime: 7

@@ -8,12 +8,15 @@ public class CameraControl : MonoBehaviour
 
     private Rigidbody rb;
     private bool movementAllowed = true;
+    private AudioListener audioListener_obj;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.drag = properties.drag;
         rb.useGravity = false;
+
+        audioListener_obj = GetComponentInChildren<AudioListener>();
     }
 
     void FixedUpdate()
@@ -38,6 +41,17 @@ public class CameraControl : MonoBehaviour
         if (rb.velocity.magnitude >properties.maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * properties.maxSpeed;
+        }
+    }
+
+    private void Update()
+    {
+        Ray ray = new Ray(rb.position, rb.gameObject.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            audioListener_obj.transform.position = hit.point;
         }
     }
 
