@@ -10,6 +10,9 @@ public class ActionIconControl : MonoBehaviour
     private bool iconEnabled = false;
 
     private Vector3 halfScreen;
+    Vector2 canvasSize;
+    Vector2 canvasScreenScalar;
+    bool canvasSizeDefined = false;
 
     private NavMeshController navMeshController;
 
@@ -32,11 +35,25 @@ public class ActionIconControl : MonoBehaviour
         iconEnabled = true;
         navMeshController.heldItem = obj;
         navMeshController.heldItemIndex = inventoryIndex;
+        Cursor.visible = false;
     }
 
     private void GoToCursor()
     {
-        transform.localPosition = Input.mousePosition - halfScreen;
+        //Debug.Log(new Vector2(Screen.width, Screen.height));
+        //RectTransform canvas = transform.parent.GetComponent<RectTransform>();
+        //Debug.Log(new Vector2(canvas.sizeDelta.x, canvas.sizeDelta.y));
+        Vector2 initPos = Input.mousePosition - halfScreen;
+        if (!canvasSizeDefined)
+        {
+            RectTransform canvas = transform.parent.GetComponent<RectTransform>();
+            canvasSize = new Vector2(canvas.sizeDelta.x, canvas.sizeDelta.y);
+            float x = canvasSize.x / Screen.width;
+            float y = canvasSize.y / Screen.height;
+            canvasScreenScalar = new Vector2(x, y);
+            canvasSizeDefined = true;
+        }
+        transform.localPosition = new Vector3(initPos.x * canvasScreenScalar.x, initPos.y * canvasScreenScalar.y, 0);
     }
 
     public void Disable()
@@ -44,6 +61,7 @@ public class ActionIconControl : MonoBehaviour
         iconEnabled = false;
         navMeshController.heldItem = null;
         navMeshController.heldItemIndex = -1;
+        Cursor.visible = true;
         Destroy(gameObject);
     }
 }
