@@ -32,5 +32,5 @@ MonoBehaviour:
   rotNE: {x: 15, y: -110, z: 20}
   dockingLocationNE: {x: -55, y: 2.2, z: 15}
   dockingLocationSE: {x: -2, y: 2.6, z: 67}
-  dockingLocationSW: {x: 59, y: 1.9, z: -21}
+  dockingLocationSW: {x: 61, y: 1.9, z: 7}
   dockingLocationNW: {x: 26, y: 0.3, z: -58}
