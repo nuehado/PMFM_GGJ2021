@@ -159,7 +159,7 @@ public class UIManager : MonoBehaviour
     internal void DisplayWin()
     {
         Time.timeScale = 0;
-        loseScreen.SetActive(true);
+        winScreen.SetActive(true);
     }
 
     public void NewGame()
