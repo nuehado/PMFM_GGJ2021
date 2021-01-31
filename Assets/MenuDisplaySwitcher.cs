@@ -5,15 +5,32 @@ using UnityEngine;
 public class MenuDisplaySwitcher : MonoBehaviour
 {
     [SerializeField] GameObject guideInfo;
+    [SerializeField] GameObject guideInfo2;
     [SerializeField] GameObject controlsInfo;
 
-    public bool isControlsUp = false;
+    [SerializeField] List<GameObject> tutorials = new List<GameObject>();
 
-    public void SwitchDisplay()
+    int i = 0;
+
+    public void SwitchTutorialDisplay()
     {
-        guideInfo.SetActive(isControlsUp);
-        controlsInfo.SetActive(!isControlsUp);
+        i ++;
 
-        isControlsUp = !isControlsUp;
+        if (i >= tutorials.Count)
+        {
+            i = 0;
+        }
+
+        for (int j = 0; j < tutorials.Count; j++)
+        {
+            if (i == j)
+            {
+                tutorials[j].SetActive(true);
+            }
+            else
+            {
+                tutorials[j].SetActive(false);
+            }
+        }
     }
 }
