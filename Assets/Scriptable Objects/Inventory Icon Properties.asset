@@ -17,3 +17,4 @@ MonoBehaviour:
   twig: {fileID: 21300000, guid: 088dc366d3221ee4e98a59030e97c50c, type: 3}
   log: {fileID: 21300000, guid: 5aaa329de8115d3498b997ad63976200, type: 3}
   oilLamp: {fileID: 21300000, guid: 9cef0d5b53f679d42895bbdbca1b4593, type: 3}
+  coal: {fileID: 21300000, guid: f26e6fc5fff891d4abb14161ed731e91, type: 3}

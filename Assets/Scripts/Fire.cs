@@ -61,7 +61,7 @@ public class Fire : Interactable_Source
 
     public void StartNewFire(Vector3 location)
     {
-        if (properties.fireType != FireType.Oil)
+        if (properties.fireType != FireType.Oil || fuel <= 0)
             return;
 
         Instantiate(properties.newFirePrefab, location, Quaternion.identity);
