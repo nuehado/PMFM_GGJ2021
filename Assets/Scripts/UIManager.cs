@@ -40,29 +40,31 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateFireUI();
+    }
+
+    private void UpdateFireUI()
+    {
         FindFires();
-        
-        
-        fireFillTL.fillAmount += 0.1f * Time.deltaTime;
+        GetBeach();
     }
 
     private void FindFires()
     {
-        if(FindObjectsOfType<Fire>() == null)
+        if (FindObjectsOfType<Fire>() == null)
         {
             Debug.Log("You LOSe!");
             return;
         }
 
-        foreach(Fire fire in FindObjectsOfType<Fire>())
+        fires.Clear();
+        foreach (Fire fire in FindObjectsOfType<Fire>())
         {
             if (fires.Contains(fire) == false)
             {
                 fires.Add(fire);
             }
         }
-
-        GetBeach();
     }
 
     private void GetBeach()
@@ -75,6 +77,7 @@ public class UIManager : MonoBehaviour
             {
                 if (Vector3.Distance(fire.transform.position, beaches[i].transform.position) < beachDistance)
                 {
+                    beachDistance = Vector3.Distance(fire.transform.position, beaches[i].transform.position);
                     closestBeach = beaches[i];
                 }
             }
