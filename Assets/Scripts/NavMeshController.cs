@@ -27,6 +27,7 @@ public class NavMeshController : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit, 1000))
             {
+                Debug.Log("Raycast target: " + hit.collider.gameObject.name);
                 Debug.DrawLine(ray.origin, hit.point);
 
                 if (hit.collider.TryGetComponent(out NavMeshAgent character))
