@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class InventoryIcon : MonoBehaviour
@@ -8,11 +9,13 @@ public class InventoryIcon : MonoBehaviour
     public InventoryIcon_Properties properties;
     private CharacterInventory inventory;
     private Transform canvas;
+    private NavMeshAgent agent;
 
     void Start()
     {
         inventory = transform.parent.parent.GetComponentInParent<CharacterInventory>();
         canvas = GameObject.Find("Canvas").transform;
+        agent = GetComponentInParent<NavMeshAgent>();
     }
 
     public void UseInventoryItem(int index)
@@ -46,5 +49,10 @@ public class InventoryIcon : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void StopMoving()
+    {
+        agent.SetDestination(agent.transform.position);
     }
 }
