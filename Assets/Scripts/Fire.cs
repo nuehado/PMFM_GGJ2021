@@ -57,6 +57,22 @@ public class Fire : Interactable_Source
         {
             Debug.Log("You lost! You Fucked up! You havent handled this inevitable eventuality, you dingus, you absoulte baffooon, you fucking dissapoinment");
         }
+        if (properties.fireType == FireType.Default)
+        {
+            Destroy(this.gameObject);
+        }
+        else if (properties.fireType == FireType.Oil)
+        {
+            if (owner != null)
+            {
+                owner.RemoveFromInventory(this);
+            }
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private Beach GetNearestBeach()

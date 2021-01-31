@@ -23,7 +23,7 @@ public class CharacterInventory : MonoBehaviour
 
         inventory.Add(newObject);
         newObject.owner = this;
-        newObject.gameObject.SetActive(false);
+        newObject.GetComponent<SpriteRenderer>().enabled = false;
         ui.RefreshUI();
     }
 
@@ -56,7 +56,7 @@ public class CharacterInventory : MonoBehaviour
                 transform.position.y - 0.5f, transform.position.z + Random.Range(-1.5f, 1.5f));
             obj.transform.position = spawnLocation;
             obj.owner = null;
-            obj.gameObject.SetActive(true);
+            obj.GetComponent<SpriteRenderer>().enabled = true;
         }
         else //object used, destroy it
         {
