@@ -70,6 +70,8 @@ public class InventoryUI : MonoBehaviour
                 return properties.log;
             else if (kindling.properties.name == "Twig")
                 return properties.twig;
+            else if (kindling.properties.name == "Coal")
+                return properties.coal;
         }
 
         Debug.Log($"UNKNOWN INVENTORY ITEM: {obj.gameObject.name}");
