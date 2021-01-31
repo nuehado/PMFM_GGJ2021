@@ -74,7 +74,7 @@ public class InteractionManager : MonoBehaviour
                 if (!beach.hasFire)
                 {
                     Vector3 spawnLocation = new Vector3(transform.position.x + UnityEngine.Random.Range(-1.5f, 1.5f),
-                        transform.position.y - 0.5f, transform.position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
+                        transform.position.y + 1.1f, transform.position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
                     fire.StartNewFire(spawnLocation);
                     beach.hasFire = true;
                 }

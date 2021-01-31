@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoatManager : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class BoatManager : MonoBehaviour
     private Beach visibleBeach;
     private Vector3 dockingPoint;
 
+    private Image currUI;
+    private Image uiNE;
+    private Image uiNW;
+    private Image uiSW;
+    private Image uiSE;
+
     private void Start()
     {
         StartCoroutine(ManageBoats());
@@ -22,6 +29,14 @@ public class BoatManager : MonoBehaviour
         boat = boatObj.transform;
         boatImg = boatObj.GetComponent<SpriteRenderer>();
         boatObj.SetActive(false);
+        uiNW = GameObject.Find("BoatLT").GetComponent<Image>();
+        uiNE = GameObject.Find("BoatRT").GetComponent<Image>();
+        uiSW = GameObject.Find("BoatLB").GetComponent<Image>();
+        uiSE = GameObject.Find("BoatRB").GetComponent<Image>();
+        uiNW.enabled = false;
+        uiNE.enabled = false;
+        uiSW.enabled = false;
+        uiSE.enabled = false;
     }
 
     private IEnumerator ManageBoats()
@@ -33,6 +48,7 @@ public class BoatManager : MonoBehaviour
             boat.gameObject.SetActive(true);
             IslandEdge edge = PickRandomEdge();
             SetUpBoat(edge);
+            currUI.enabled = true;
             float startTime = Time.time;
             while (Time.time <= startTime + properties.boatWaitTime)
             {
@@ -47,6 +63,7 @@ public class BoatManager : MonoBehaviour
             }
 
             //failed to get to boat
+            currUI.enabled = false;
             Vector3 direction = (endPos - startPos).normalized;
             float timeBeforeNextBoat = Random.Range(properties.minTimeBetweenBoats, properties.maxTimeBetweenBoats);
             float speed = (endPos - startPos).magnitude / properties.boatWaitTime;
@@ -118,6 +135,7 @@ public class BoatManager : MonoBehaviour
         endPos = new Vector3(-n, 2.2f, n);
         boat.eulerAngles = properties.rotNE;
         dockingPoint = properties.dockingLocationNE;
+        currUI = uiNE;
 
         Beach[] beaches = FindObjectsOfType<Beach>();
         visibleBeach = beaches[0];
@@ -139,6 +157,7 @@ public class BoatManager : MonoBehaviour
         endPos = new Vector3(-n, 0.3f, -n);
         boat.eulerAngles = properties.rotNW;
         dockingPoint = properties.dockingLocationNW;
+        currUI = uiNW;
 
         Beach[] beaches = FindObjectsOfType<Beach>();
         visibleBeach = beaches[0];
@@ -160,6 +179,7 @@ public class BoatManager : MonoBehaviour
         endPos = new Vector3(n, 2.6f, n);
         boat.eulerAngles = properties.rotSE;
         dockingPoint = properties.dockingLocationSE;
+        currUI = uiSE;
 
         Beach[] beaches = FindObjectsOfType<Beach>();
         visibleBeach = beaches[0];
@@ -181,6 +201,7 @@ public class BoatManager : MonoBehaviour
         endPos = new Vector3(n, 1.9f, -n);
         boat.eulerAngles = properties.rotSW;
         dockingPoint = properties.dockingLocationSW;
+        currUI = uiSW;
 
         Beach[] beaches = FindObjectsOfType<Beach>();
         visibleBeach = beaches[0];

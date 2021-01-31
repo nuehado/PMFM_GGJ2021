@@ -52,6 +52,55 @@ public class Fire : Interactable_Source
     private void Extinguish()
     {
         Debug.Log($"{gameObject.name} ran out of fuel!");
+        GetNearestBeach().hasFire = false;
+        if (AllFiresExtinguished())
+        {
+            Debug.Log("You lost! You Fucked up! You havent handled this inevitable eventuality, you dingus, you absoulte baffooon, you fucking dissapoinment");
+        }
+        if (properties.fireType == FireType.Default)
+        {
+            Destroy(this.gameObject);
+        }
+        else if (properties.fireType == FireType.Oil)
+        {
+            if (owner != null)
+            {
+                owner.RemoveFromInventory(this);
+            }
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    private Beach GetNearestBeach()
+    {
+        Beach[] beaches = FindObjectsOfType<Beach>();
+        Beach closestBeach = beaches[0];
+        float closestBeachDist = (transform.position - beaches[0].transform.position).magnitude;
+        for (int i = 1; i < beaches.Length; i++)
+        {
+            float dist = (transform.position - beaches[i].transform.position).magnitude;
+            if (dist < closestBeachDist)
+            {
+                closestBeach = beaches[i];
+                closestBeachDist = dist;
+            }
+        }
+        return closestBeach;
+    }
+
+    private bool AllFiresExtinguished()
+    {
+        foreach (Fire fire in FindObjectsOfType<Fire>())
+        {
+            if (fire.GetFireLife() > 0)
+                return false;
+        }
+
+        return true;
     }
 
     public float GetFireLife()
