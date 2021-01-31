@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4946c9165951ff148826a870c5b423dd, type: 3}
+  m_Name: Boat Manager Properties
+  m_EditorClassIdentifier: 
+  boatPrefab: {fileID: 2739542676300588699, guid: fdd20f534054f2e41a6bcc82107f393d,
+    type: 3}
+  timeBeforeFirstBoat: 45
+  minTimeBetweenBoats: 30
+  maxTimeBetweenBoats: 44
+  boatWaitTime: 10
+  islandRadius: 50
+  distFromCoast: 15
+  verticalSpeed: 150
+  timeToReachShore: 3
+  beachNE: {fileID: 21300000, guid: e5e7c60c3567e1840a9c76b7c9f8e35e, type: 3}
+  beachSE: {fileID: 21300000, guid: c4c421b5f51301e49bfcb0e306b08711, type: 3}
+  beachSW: {fileID: 21300000, guid: 1468fffb23ae1d442838cd26228d4797, type: 3}
+  beachNW: {fileID: 21300000, guid: 8596f0cbbba8c954da8474af9043dbd6, type: 3}
+  rotSE: {x: 20, y: -160, z: -20}
+  rotNW: {x: 60, y: -180, z: -30}
+  rotSW: {x: 20, y: -95, z: 25}
+  rotNE: {x: 15, y: -110, z: 20}
+  dockingLocationNE: {x: -55, y: 2.2, z: 15}
+  dockingLocationSE: {x: -2, y: 2.6, z: 67}
+  dockingLocationSW: {x: 59, y: 1.9, z: -21}
+  dockingLocationNW: {x: 26, y: 0.3, z: -58}
