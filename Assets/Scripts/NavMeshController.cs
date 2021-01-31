@@ -8,6 +8,9 @@ public class NavMeshController : MonoBehaviour
     private NavMeshAgent agent = null;
     private Camera cam;
 
+    [HideInInspector] public Interactable_Source heldItem;
+    [HideInInspector] public int heldItemIndex = -1;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,7 +20,7 @@ public class NavMeshController : MonoBehaviour
     private void Update()
     {
         //TODO Add right click task queue system
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -42,14 +45,23 @@ public class NavMeshController : MonoBehaviour
                     if (hit.collider.TryGetComponent(out Interactable_Source interactable))
                     {
                         Debug.Log("calling coroutine from navcontroller");
-                        StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(interactable));
+                        Vector3 targetPos = GetTargetPos(interactable, hit.point);
+                        StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(interactable, heldItem, targetPos, heldItemIndex));
                     }
-                    else
+                    else if (heldItem == null)
                     {
                         agent.GetComponent<InteractionManager>().ClearTargetInteractables();
                     }
+                    else
+                    {
+                        Vector3 targetPos = GetTargetPos(interactable, hit.point);
+                        StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(null, heldItem, targetPos, heldItemIndex));
+                    }
                 }
             }
+
+            if (heldItem != null)
+                FindObjectOfType<ActionIconControl>().Disable();
         }
     }
 
@@ -65,6 +77,15 @@ public class NavMeshController : MonoBehaviour
         }
 
         agent.GetComponentInChildren<InventoryUI>().ShowUI(toggle);
+        heldItem = null;
+        heldItemIndex = -1;
     }
-    
+
+    private Vector3 GetTargetPos(Interactable_Source interactable, Vector3 hitPoint)
+    {
+        if (interactable == null || interactable is Beach)
+            return hitPoint;
+        else
+            return interactable.transform.position;
+    }
 }

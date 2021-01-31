@@ -13,26 +13,20 @@ public class InteractionManager : MonoBehaviour
         inventory = GetComponent<CharacterInventory>();
     }
 
-    public IEnumerator PollInteractionDistance(Interactable_Source interactable)
+    public IEnumerator PollInteractionDistance(Interactable_Source interactable, Interactable_Source heldItem, Vector3 targetPos, int i)
     {
         Debug.Log("Headed towards interactable");
         
-        if (Vector3.Distance(transform.position, interactable.transform.position) < 3)
+        if (Vector3.Distance(transform.position, targetPos) < 3)
         {
-            if (interactable is Kindling kindling)
+            Debug.Log($"Destination reached. Interactable: {interactable}. Held item: {heldItem}");
+            if (heldItem == null)
             {
-                inventory.AddToInventory(kindling);
+                InteractWithObject(interactable);
             }
-
-            else if (interactable is Fire fire)
+            else
             {
-                inventory.AddAllKindlingToFire(fire);
-            }
-
-            else if (interactable is KindlingSource tree)
-            {
-                currentInteractable = tree;
-                tree.HarvestKindling();
+                UseObjectOnObject(interactable, heldItem, i);
             }
             StopAllCoroutines();
             yield break;
@@ -40,7 +34,72 @@ public class InteractionManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         Debug.Log("calling coroutine from coroutine");
-        StartCoroutine(PollInteractionDistance(interactable));
+        StartCoroutine(PollInteractionDistance(interactable, heldItem, targetPos, i));
+    }
+
+    private void InteractWithObject(Interactable_Source interactable)
+    {
+        if (interactable is Kindling kindling)
+        {
+            inventory.AddToInventory(kindling);
+        }
+
+        else if (interactable is Fire fire)
+        {
+            if (fire.properties.fireType == Fire.FireType.Oil)
+            {
+                inventory.AddToInventory(interactable);
+            }
+            else if (fire.properties.fireType == Fire.FireType.Default)
+            {
+                inventory.AddAllKindlingToFire(fire);
+            }
+        }
+
+        else if (interactable is KindlingSource tree)
+        {
+            currentInteractable = tree;
+            tree.HarvestKindling();
+        }
+    }
+
+    private void UseObjectOnObject(Interactable_Source interactable, Interactable_Source heldItem, int i)
+    {
+        if (heldItem is Fire)
+        {
+            if (interactable is Beach) //set up new fire if on beach
+            {
+                Beach beach = interactable as Beach;
+                Fire fire = heldItem as Fire;
+                if (!beach.hasFire)
+                {
+                    Vector3 spawnLocation = new Vector3(transform.position.x + UnityEngine.Random.Range(-1.5f, 1.5f),
+                        transform.position.y - 0.5f, transform.position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
+                    fire.StartNewFire(spawnLocation);
+                    beach.hasFire = true;
+                }
+                else
+                {
+                    GetComponent<CharacterInventory>().RemoveFromInventory(heldItem, true);
+                }
+            }
+            else //drop item if not on beach
+            {
+                GetComponent<CharacterInventory>().RemoveFromInventory(heldItem, true);
+            }
+        }
+        else if (heldItem is Kindling)
+        {
+            if (interactable is Fire) //add kindling to fire
+            {
+                Fire fire = interactable as Fire;
+                GetComponent<CharacterInventory>().AddKindlingToFire(i, fire);
+            }
+            else //drop kindling if not by fire
+            {
+                GetComponent<CharacterInventory>().RemoveFromInventory(heldItem, true);
+            }
+        }
     }
 
     internal void ClearTargetInteractables()
