@@ -40,7 +40,8 @@ public class HarvestableTree : KindlingSource
                 Instantiate(kindling, spawnLocation, Quaternion.identity);
 
             }
-            Instantiate(stump, transform.position, Quaternion.identity, GetComponentInParent<TreeLocation>().transform);
+            Vector3 stumpSpawn = new Vector3(transform.position.x, 0.5f, transform.position.z);
+            Instantiate(stump, stumpSpawn, Quaternion.identity, GetComponentInParent<TreeLocation>().transform);
             gameObject.SetActive(false);
         }
         else
