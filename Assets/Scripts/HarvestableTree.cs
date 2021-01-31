@@ -17,6 +17,11 @@ public class HarvestableTree : KindlingSource
         StartCoroutine(ChopItSmaller());
     }
 
+    private void OnEnable()
+    {
+        IsInteractedWith = false;
+    }
+
     IEnumerator ChopItSmaller()
     {
         if (IsInteractedWith == false)
@@ -35,7 +40,7 @@ public class HarvestableTree : KindlingSource
                 Instantiate(kindling, spawnLocation, Quaternion.identity);
 
             }
-            Instantiate(stump, transform.position, Quaternion.identity);
+            Instantiate(stump, transform.position, Quaternion.identity, GetComponentInParent<TreeLocation>().transform);
             gameObject.SetActive(false);
         }
         else
