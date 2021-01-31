@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HarvestableStump : KindlingSource
 {
     [SerializeField] private List<GameObject> harvestables;
-    Slider progressSlider;
 
     public override bool IsInteractedWith { get; set; }
 
