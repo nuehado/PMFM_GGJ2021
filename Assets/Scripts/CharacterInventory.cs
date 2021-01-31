@@ -105,6 +105,7 @@ public class CharacterInventory : MonoBehaviour
             return;
 
         Debug.Log("I'm on fire!");
+        GetComponentInChildren<AudioSource>().PlayOneShot(properties.wilhelm);
         onFire = true;
         EnableFlames(true);
         if (selfFire == null)
