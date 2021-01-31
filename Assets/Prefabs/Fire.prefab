@@ -4769,6 +4769,7 @@ GameObject:
   - component: {fileID: 3590559324002416242}
   - component: {fileID: 2731256363245112736}
   - component: {fileID: 2086047592772356316}
+  - component: {fileID: 1615470603325046317}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -5024,3 +5025,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &1615470603325046317
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472012780564121603}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.86, y: 3.0000002, z: 1.86}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: -0.69}
+  m_TimeToStationary: 0.5

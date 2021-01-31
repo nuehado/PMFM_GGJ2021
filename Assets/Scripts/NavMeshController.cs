@@ -7,6 +7,7 @@ public class NavMeshController : MonoBehaviour
 {
     private NavMeshAgent agent = null;
     private Camera cam;
+    public int rayDistance = 1000;
 
     [HideInInspector] public Interactable_Source heldItem;
     [HideInInspector] public int heldItemIndex = -1;
@@ -25,7 +26,7 @@ public class NavMeshController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             
-            if (Physics.Raycast(ray, out hit, 1000))
+            if (Physics.Raycast(ray, out hit, rayDistance))
             {
                 Debug.Log("Raycast target: " + hit.collider.gameObject.name);
                 Debug.DrawLine(ray.origin, hit.point);

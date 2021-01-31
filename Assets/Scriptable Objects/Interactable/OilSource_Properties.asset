@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f136323960448824c8e3533410678c90, type: 3}
-  m_Name: Oil Lamp
+  m_Script: {fileID: 11500000, guid: 426cea70e22297a4483b4b81c3d2fa74, type: 3}
+  m_Name: OilSource_Properties
   m_EditorClassIdentifier: 
-  startingFuel: 30
-  fuelUsageRate: 0
-  fireType: 1
-  newFirePrefab: {fileID: 3472012780564121603, guid: 0f2cf76e789297e4f9d6813f9142217f,
-    type: 3}
+  interactionTime: 2

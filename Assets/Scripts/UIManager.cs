@@ -12,10 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image fireFillTR;
     [SerializeField] Image fireFillBR;
 
-    private Fire fireTL = null;
-    private Fire fireBL = null;
-    private Fire fireTR = null;
-    private Fire fireBR = null;
+    bool isPaused = false;
 
     [SerializeField] Beach beachTL;
     [SerializeField] Beach beachBL;
@@ -24,6 +21,9 @@ public class UIManager : MonoBehaviour
 
     List<Beach> beaches = new List<Beach>();
     List<Fire> fires = new List<Fire>();
+
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] NavMeshController nav_raycaster;
 
     private void Start()
     {
@@ -40,7 +40,39 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !isPaused;
+            if (isPaused)
+            {
+                Time.timeScale = 0;
+
+                optionsMenu.SetActive(true);
+                nav_raycaster.rayDistance = 10;
+            }
+            else
+            {
+                ResumeGame();
+            }
+
+        }
+        
+        
         UpdateFireUI();
+
+
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        optionsMenu.SetActive(false);
+        nav_raycaster.rayDistance = 1000;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void UpdateFireUI()
@@ -60,7 +92,7 @@ public class UIManager : MonoBehaviour
         fires.Clear();
         foreach (Fire fire in FindObjectsOfType<Fire>())
         {
-            if (fires.Contains(fire) == false)
+            if (fires.Contains(fire) == false && fire.properties.fireType == Fire.FireType.Default)
             {
                 fires.Add(fire);
             }
