@@ -22,6 +22,9 @@ public class BoatManager : MonoBehaviour
     private Image uiSW;
     private Image uiSE;
 
+    private AudioSource horn_SFX;
+    [SerializeField] UIManager uIManager;
+
     private void Start()
     {
         StartCoroutine(ManageBoats());
@@ -37,6 +40,8 @@ public class BoatManager : MonoBehaviour
         uiNE.enabled = false;
         uiSW.enabled = false;
         uiSE.enabled = false;
+
+        horn_SFX = GetComponent<AudioSource>();
     }
 
     private IEnumerator ManageBoats()
@@ -83,6 +88,7 @@ public class BoatManager : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + properties.timeToReachShore / 2f)
         {
+            
             boat.position += Vector3.up * Time.deltaTime * properties.verticalSpeed;
             yield return null;
         }
@@ -98,6 +104,8 @@ public class BoatManager : MonoBehaviour
 
         boat.position = dockingPoint;
         Debug.Log("YOU WON!");
+        uIManager.DisplayWin();
+        
         yield return null;
     }
 
@@ -109,6 +117,8 @@ public class BoatManager : MonoBehaviour
 
     private void SetUpBoat(IslandEdge edge)
     {
+
+        horn_SFX.Play();
         float n = properties.distFromCoast + properties.islandRadius;
 
         switch (edge)

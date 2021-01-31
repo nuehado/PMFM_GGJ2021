@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DefaultFire
   m_EditorClassIdentifier: 
   startingFuel: 50
-  fuelUsageRate: 0.5
+  fuelUsageRate: 0.75
   fireType: 0
   newFirePrefab: {fileID: 0}
