@@ -22,6 +22,7 @@ public class BoatManager : MonoBehaviour
     private Image uiSW;
     private Image uiSE;
 
+    int boatsSummoned = 0;
     private AudioSource horn_SFX;
     [SerializeField] UIManager uIManager;
 
@@ -112,7 +113,16 @@ public class BoatManager : MonoBehaviour
     private IslandEdge PickRandomEdge()
     {
         int i = Random.Range(0, 4);
-        return (IslandEdge)i;
+        IslandEdge proposedEdge = (IslandEdge)i;
+        if (boatsSummoned > 0 || proposedEdge != IslandEdge.SE)
+        {
+            boatsSummoned++;
+            return proposedEdge;
+        }
+        else
+        {
+            return PickRandomEdge();
+        }
     }
 
     private void SetUpBoat(IslandEdge edge)
