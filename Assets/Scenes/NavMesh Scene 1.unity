@@ -4834,7 +4834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64150507d887fe145919cac04aa60bdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17d64ded593eeb9428ceca43e8ac2b62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6298,7 +6298,7 @@ PrefabInstance:
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.6
+      value: 35.45
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
@@ -6308,7 +6308,7 @@ PrefabInstance:
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.1
+      value: 42.11
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
@@ -12733,7 +12733,7 @@ PrefabInstance:
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.57
+      value: 49.05
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
@@ -12743,7 +12743,7 @@ PrefabInstance:
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.76
+      value: 41.7
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
@@ -14900,7 +14900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1306141293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18998,7 +18998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1649874995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23483,7 +23483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64150507d887fe145919cac04aa60bdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17d64ded593eeb9428ceca43e8ac2b62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23769,7 +23769,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.739
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -25147,17 +25147,17 @@ PrefabInstance:
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.44
+      value: -11.25
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.42
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43.91
+      value: 12.55
       objectReference: {fileID: 0}
     - target: {fileID: 3203248669929395157, guid: 5d32395f62d215447b39991760ab081c,
         type: 3}

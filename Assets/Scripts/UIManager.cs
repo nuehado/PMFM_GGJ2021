@@ -164,6 +164,7 @@ public class UIManager : MonoBehaviour
 
     public void NewGame()
     {
+        Time.timeScale = 1f;
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
 
