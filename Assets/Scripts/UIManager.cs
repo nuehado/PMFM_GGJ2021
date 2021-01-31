@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject optionsMenu;
     [SerializeField] NavMeshController nav_raycaster;
+
+    [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject winScreen;
 
     private void Start()
     {
@@ -63,6 +67,14 @@ public class UIManager : MonoBehaviour
 
     }
 
+    private void LateUpdate()
+    {
+        if (fires.Count < 1)
+        {
+            DisplayLoseScreen();
+        }
+    }
+
     public void ResumeGame()
     {
         Time.timeScale = 1f;
@@ -85,7 +97,7 @@ public class UIManager : MonoBehaviour
     {
         if (FindObjectsOfType<Fire>() == null)
         {
-            Debug.Log("You LOSe!");
+
             return;
         }
 
@@ -95,8 +107,15 @@ public class UIManager : MonoBehaviour
             if (fires.Contains(fire) == false && fire.properties.fireType == Fire.FireType.Default)
             {
                 fires.Add(fire);
+
             }
         }
+    }
+
+    private void DisplayLoseScreen()
+    {
+        Time.timeScale = 0;
+        loseScreen.SetActive(true);
     }
 
     private void GetBeach()
@@ -135,5 +154,18 @@ public class UIManager : MonoBehaviour
                 fireFillBR.fillAmount = 0.01f * fire.GetFireLife();
             }
         }
+    }
+
+    internal void DisplayWin()
+    {
+        Time.timeScale = 0;
+        loseScreen.SetActive(true);
+    }
+
+    public void NewGame()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+
     }
 }
