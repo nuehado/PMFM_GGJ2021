@@ -15,8 +15,6 @@ public class InteractionManager : MonoBehaviour
 
     public IEnumerator PollInteractionDistance(Interactable_Source interactable)
     {
-        Debug.Log("Headed towards interactable");
-        
         if (Vector3.Distance(transform.position, interactable.transform.position) < 3)
         {
             if (interactable is Kindling kindling)
@@ -39,7 +37,7 @@ public class InteractionManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.2f);
-        Debug.Log("calling coroutine from coroutine");
+
         StartCoroutine(PollInteractionDistance(interactable));
     }
 
@@ -49,7 +47,7 @@ public class InteractionManager : MonoBehaviour
         {
             source.IsInteractedWith = false;
         }
-        Debug.Log("Headed towards random spot");
+
         StopAllCoroutines();
     }
 }

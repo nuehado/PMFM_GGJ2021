@@ -41,7 +41,6 @@ public class NavMeshController : MonoBehaviour
                     
                     if (hit.collider.TryGetComponent(out Interactable_Source interactable))
                     {
-                        Debug.Log("calling coroutine from navcontroller");
                         StartCoroutine(agent.GetComponent<InteractionManager>().PollInteractionDistance(interactable));
                     }
                     else
